@@ -1,0 +1,87 @@
+apply plugin: 'com.android.application'
+
+android {
+    namespace 'com.asiait.yygh'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.asiait.yygh"
+        minSdk 21
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'com.google.android.material:material:1.5.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+    implementation 'androidx.core:core:1.7.0'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    /*RecycleRview*/
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    /*网络请求依赖*/
+    implementation 'com.lzy.net:okgo:3.0.4'
+    /*数据解析依赖*/
+    implementation 'com.alibaba:fastjson:1.2.17'
+    /*上拉加载下拉刷新*/
+    implementation 'com.lcodecorex:tkrefreshlayout:1.0.7'
+    /*轮播图*/
+    implementation 'com.bigkoo:convenientbanner:2.0.5'
+    /*权限申请*/
+    implementation 'pub.devrel:easypermissions:3.0.0'
+    /*通用adapter*/
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.10'
+    /*手势操作activity*/
+    implementation 'me.imid.swipebacklayout.lib:library:1.1.0'
+    /*联动多级选择器*/
+    implementation 'com.contrarywind:Android-PickerView:4.1.9'
+    /*轮播图*/
+    implementation 'io.github.youth5201314:banner:2.2.2'
+    /*图片加载*/
+    implementation 'com.github.bumptech.glide:glide:4.14.2'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
+    implementation 'com.tencent.tbs:tbssdk:44226'
+
+    /* 圆形头像 RecycleRview*/
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    /*柱状图*/
+    implementation 'com.github.lecho:hellocharts-library:1.5.8@aar'
+
+    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.github.bumptech.glide:glide:4.5.0'
+    implementation 'com.lcw.library:imagepicker:2.2.5'
+    implementation 'com.github.XXQAQ:FasterDialog:1.25.0'
+    implementation 'com.alibaba:fastjson:1.2.59'
+    implementation 'com.github.HanHuoBin:BaseDialog:1.2.0'
+//    上传图片
+    implementation 'com.github.wildma:PictureSelector:1.1.2'
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0'
+
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation "com.contrarywind:Android-PickerView:3.2.7"
+}

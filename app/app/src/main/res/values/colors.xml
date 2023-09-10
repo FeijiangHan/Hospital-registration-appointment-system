@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="common_blue2">#2F53EA</color>
+    <color name="common_blue">#1a88f9</color>
+    <!--透明-->
+    <color name="blue2">#426ae1</color>
+    <color name="redpri">#e03325</color>
+    <color name="bluetext">#506fed</color>
+    <color name="transparent">#00000000</color>
+    <!--半透明-->
+    <color name="top_bar_bg">#00cccc</color>
+    <color name="common_title_color">#333</color>
+    <color name="common_tip_color">#999</color>
+    <color name="lightgray">#F4F4F7</color>
+    <color name="translucent">#22050505</color>
+    <color name="darkRed">#9b2326</color>
+    <color name="navyBlue">#2f54eb</color>
+    <color name="light_gray">#f6f6f6</color>
+    <color name="graycc">#ccc</color>
+    <color name="gray">#F3F4F6</color>
+    <color name="lightgrayF4">#F4F4F7</color>
+    <color name="light_grayF2">#F2F3F5</color>
+    <color name="light_gray99">#999999</color>
+    <color name="light_gray33">#333333</color>
+    <color name="light_grayee">#EEEEEE</color>
+    <color name="lightgrayF3">#F3F4F6</color>
+    <color name="lightgray66">#666666</color>
+    <color name="green66bc7d">#66BC7D</color>
+    <color name="red35352">#E35352</color>
+    <color name="xx1">#fd9a00</color>
+    <color name="xx2">#f98100</color>
+    <color name="sd2">#e40b00</color>
+</resources>

@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wzh.dao.WorkMapper">
+  <resultMap id="BaseResultMap" type="com.wzh.model.Work">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="tid" jdbcType="VARCHAR" property="tid" />
+
+    <result column="quant" jdbcType="VARCHAR" property="quant" />
+    <result column="room" jdbcType="VARCHAR" property="room" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+
+    <result column="date" jdbcType="VARCHAR" property="date" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="pass" jdbcType="VARCHAR" property="pass" />
+    <result column="tel" jdbcType="VARCHAR" property="tel" />
+    <result column="card" jdbcType="VARCHAR" property="card" />
+    <result column="msg" jdbcType="VARCHAR" property="msg" />
+    <result column="kb" jdbcType="VARCHAR" property="kb" />
+    <result column="post" jdbcType="VARCHAR" property="post" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, tid, quant, date, time,room,type
+  </sql>
+    <select id="selectkey" parameterType="com.wzh.model.Work" resultMap="BaseResultMap">
+        select * from  `work` where quant = #{quant,jdbcType=VARCHAR} and date = #{date,jdbcType=VARCHAR} and tid = #{uid,jdbcType=VARCHAR}
+    </select>
+
+  <select id="yy" parameterType="java.lang.String" resultMap="BaseResultMap">
+				SELECT w.id,w.tid,w.quant,w.date,w.time,w.room,w.type,u.id as uid,u.nickname,u.sex,u.username,u.tel,u.card,u.msg,u.room as kb,u.post
+				FROM `work` w
+				LEFT JOIN user u on w.tid = u.id
+    <where>
+      <if test="nickname != null and nickname != ''">
+        and u. nickname like '%${nickname}%'
+      </if>
+
+      <if test="post != null and post != ''">
+        and u. post like '%${post}%'
+      </if>
+      and TO_DAYS(date) = TO_DAYS(NOW()) and w.type = #{type} and w.quant in ('上午', '下午', '晚上')
+    </where>
+  </select>
+  <select id="yyzw" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT w.id,w.tid,w.quant,w.date,w.time,w.room,w.type,u.id as uid,u.nickname,u.sex,u.username,u.tel,u.card,u.msg,u.room as kb,u.post
+    FROM `work` w
+    LEFT JOIN user u on w.tid = u.id
+    <where>
+      <if test="nickname != null and nickname != ''">
+        and u. nickname like '%${nickname}%'
+      </if>
+
+      <if test="post != null and post != ''">
+        and u. post like '%${post}%'
+      </if>
+      and TO_DAYS(date) = TO_DAYS(NOW()) and w.type = #{type} and w.quant in ('下午', '晚上')
+    </where>
+  </select>
+  <select id="yyws" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT w.id,w.tid,w.quant,w.date,w.time,w.room,w.type,u.id as uid,u.nickname,u.sex,u.username,u.tel,u.card,u.msg,u.room as kb,u.post
+    FROM `work` w
+    LEFT JOIN user u on w.tid = u.id
+    <where>
+      <if test="nickname != null and nickname != ''">
+        and u. nickname like '%${nickname}%'
+      </if>
+
+      <if test="post != null and post != ''">
+        and u. post like '%${post}%'
+      </if>
+      and TO_DAYS(date) = TO_DAYS(NOW()) and w.type = #{type} and w.quant in ('晚上')
+    </where>
+  </select>
+  <select id="select" parameterType="com.wzh.model.Work" resultMap="BaseResultMap">
+    select  * from `work`
+    <where>
+      <if test="tid != null and tid != ''">
+        tid = #{tid,jdbcType=VARCHAR}
+      </if>
+      <if test="quant != null and quant != ''">
+        and  quant = #{quant,jdbcType=VARCHAR}
+      </if>
+      <if test="date != null and date != ''">
+        and  date = #{date,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+  <select id="getnickname" parameterType="com.wzh.model.Work" resultMap="BaseResultMap">
+    SELECT *,(SELECT nickname FROM user WHERE id = v.tid) as name FROM `work` as v
+    <where>
+      <if test="nickname != null and nickname != ''">
+        and  tid = #{nickname,jdbcType=VARCHAR}
+      </if>
+
+    </where>
+    order by date desc
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from work
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from work
+    where id in (#{id})
+  </delete>
+  <insert id="insert" parameterType="com.wzh.model.Work">
+    insert into work (id, tid, quant,
+      date, time)
+    values (#{id,jdbcType=VARCHAR}, #{tid,jdbcType=VARCHAR}, #{quant,jdbcType=VARCHAR},
+      #{date,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wzh.model.Work">
+    insert into work
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="tid != null">
+        tid,
+      </if>
+      <if test="quant != null">
+        quant,
+      </if>
+      <if test="date != null">
+        date,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+      <if test="room != null">
+        room,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="tid != null">
+        #{tid,jdbcType=VARCHAR},
+      </if>
+      <if test="quant != null">
+        #{quant,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null">
+        #{date,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="room != null">
+        #{room,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=TIMESTAMP},
+      </if>
+
+    </trim>
+
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wzh.model.Work">
+    update work
+    <set>
+      <if test="tid != null">
+        tid = #{tid,jdbcType=VARCHAR},
+      </if>
+      <if test="quant != null">
+        quant = #{quant,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null">
+        date = #{date,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="room != null">
+        room = #{room,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wzh.model.Work">
+    update work
+    set tid = #{tid,jdbcType=VARCHAR},
+      quant = #{quant,jdbcType=VARCHAR},
+      date = #{date,jdbcType=VARCHAR},
+      time = #{time,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

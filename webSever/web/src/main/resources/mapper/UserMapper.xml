@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wzh.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.wzh.model.User">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="pass" jdbcType="VARCHAR" property="pass" />
+    <result column="tel" jdbcType="VARCHAR" property="tel" />
+    <result column="card" jdbcType="VARCHAR" property="card" />
+    <result column="msg" jdbcType="VARCHAR" property="msg" />
+    <result column="room" jdbcType="VARCHAR" property="room" />
+    <result column="post" jdbcType="VARCHAR" property="post" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+  </resultMap>
+
+  <select id="ys" parameterType="com.wzh.model.User" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user where type = '医生'
+  </select>
+  <select id="getys" parameterType="com.wzh.model.User" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user
+    <where>
+      <if test="nickname != null and nickname != ''">
+        and  nickname like '%${nickname}%'
+      </if>
+      and type = '医生'
+    </where>
+  </select>
+    <select id="getnickname" parameterType="com.wzh.model.User" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from user
+        <where>
+            <if test="nickname != null and nickname != ''">
+                and  nickname like '%${nickname}%'
+            </if>
+            and type = '患者'
+        </where>
+    </select>
+    <select id="list" parameterType="com.wzh.model.User" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from user
+        <where>
+            <if test="nickname != null and nickname != ''">
+              and  nickname like '%${nickname}%'
+            </if>
+            <if test="room != null and room != ''">
+                and  room = #{room}
+            </if>
+            <if test="post != null and post != ''">
+                and  post like '%${post}%'
+            </if>
+            and type = '医生'
+        </where>
+    </select>
+  <sql id="Base_Column_List">
+    id, nickname, sex, username, pass, tel, card, msg, room, post, type, time
+  </sql>
+  <select id="getByUsernametype" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select * from user where username = #{username} and type = #{type}
+  </select>
+  <!--  查询用户名-->
+  <select id="getByUsername" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select * from user where username = #{username}
+  </select>
+  <!--  修改个人信息-->
+  <update id="updategrxx" parameterType="com.wzh.model.User">
+    update user
+    set
+      nickname = #{nickname,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      head = #{head,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <!--  密码更新-->
+  <update id="updatepass" parameterType="com.wzh.model.User">
+    update user
+    set
+      pass = #{pass,jdbcType=TIMESTAMP}
+
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from user
+    where id in (#{id})
+  </delete>
+  <insert id="insert" parameterType="com.wzh.model.User">
+    insert into user (id, nickname, sex,
+      username, pass, tel,
+      card, msg, room, post,
+      type, time)
+    values (#{id,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR},
+      #{username,jdbcType=VARCHAR}, #{pass,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR},
+      #{card,jdbcType=VARCHAR}, #{msg,jdbcType=VARCHAR}, #{room,jdbcType=VARCHAR}, #{post,jdbcType=VARCHAR},
+      #{type,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wzh.model.User">
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="nickname != null">
+        nickname,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="pass != null">
+        pass,
+      </if>
+      <if test="tel != null">
+        tel,
+      </if>
+      <if test="card != null">
+        card,
+      </if>
+      <if test="msg != null">
+        msg,
+      </if>
+      <if test="room != null">
+        room,
+      </if>
+      <if test="post != null">
+        post,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null">
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="pass != null">
+        #{pass,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="card != null">
+        #{card,jdbcType=VARCHAR},
+      </if>
+      <if test="msg != null">
+        #{msg,jdbcType=VARCHAR},
+      </if>
+      <if test="room != null">
+        #{room,jdbcType=VARCHAR},
+      </if>
+      <if test="post != null">
+        #{post,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wzh.model.User">
+    update user
+    <set>
+      <if test="nickname != null">
+        nickname = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="pass != null">
+        pass = #{pass,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="card != null">
+        card = #{card,jdbcType=VARCHAR},
+      </if>
+      <if test="msg != null">
+        msg = #{msg,jdbcType=VARCHAR},
+      </if>
+      <if test="room != null">
+        room = #{room,jdbcType=VARCHAR},
+      </if>
+      <if test="post != null">
+        post = #{post,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wzh.model.User">
+    update user
+    set nickname = #{nickname,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
+      pass = #{pass,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      card = #{card,jdbcType=VARCHAR},
+      msg = #{msg,jdbcType=VARCHAR},
+      room = #{room,jdbcType=VARCHAR},
+      post = #{post,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      time = #{time,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

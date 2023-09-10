@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">医院挂号</string>
+    <string name="yes">是</string>
+    <string name="no">否</string>
+    <string name="rationale_camera">应用需要访问您的摄像头.</string>
+    <string name="rationale_storage">应用需要访问您的存储卡.</string>
+
+</resources>

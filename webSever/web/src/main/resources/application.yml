@@ -1,0 +1,39 @@
+
+spring:
+  datasource:
+    url: jdbc:mysql://sh-cynosdbmysql-grp-4mtres8m.sql.tencentcdb.com:23351/csu
+    username: chase666
+    password: Chase666
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  main:
+      allow-circular-references: true
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 200MB
+
+  thymeleaf:
+    prefix=classpath:/templates/:thymeleaf:
+  encoding: UTF-8
+  cache: false
+#  mvc:
+#    static-path-pattern: /public/**
+server:
+  port: 8088
+  web:
+    resources:
+      static-locations: classpath:/static/,classpath:/public
+  compression:
+    enabled: false
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+
+file:
+  save:
+    path: D:\IdeaProjects\muban\springboot_user\src\main\resources\public\

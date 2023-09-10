@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wzh.dao.InfoMapper">
+  <resultMap id="BaseResultMap" type="com.wzh.model.Info">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="uid" jdbcType="VARCHAR" property="uid" />
+    <result column="tid" jdbcType="VARCHAR" property="tid" />
+    <result column="date" jdbcType="DATE" property="date" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="tname" jdbcType="VARCHAR" property="tname" />
+    <result column="yroom" jdbcType="VARCHAR" property="yroom" />
+    <result column="state" jdbcType="VARCHAR" property="state" />
+    <result column="quant" jdbcType="VARCHAR" property="quant" />
+    <result column="msg" jdbcType="VARCHAR" property="msg" />
+    <result column="wid" jdbcType="VARCHAR" property="wid" />
+    <result column="jid" jdbcType="VARCHAR" property="jid" />
+
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, uid, tid, date, time, tname, yroom,state,quant,msg
+  </sql>
+  <select id="selectinfo" parameterType="java.lang.String" resultMap="BaseResultMap">
+   SELECT * FROM info where jid = #{jid}  and TO_DAYS(date) = TO_DAYS(NOW()) and quant = #{quant}
+  </select>
+
+  <select id="selectday" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT *,(SELECT nickname FROM `user` WHERE id = v.uid) as nickname FROM info  as v where TO_DAYS(date) = TO_DAYS(NOW()) and tid = #{tid}
+  </select>
+
+  <select id="selectWid" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select * from info where wid =  #{wid}
+  </select>
+
+  <select id="selectrc" parameterType="java.lang.String" resultMap="BaseResultMap">
+SELECT *,(SELECT nickname FROM `user` WHERE id = v.uid) as nickname FROM info  as v where uid = #{uid,jdbcType=VARCHAR} and state = '正常'
+  </select>
+
+  <select id="selectweek" parameterType="java.lang.String" resultMap="BaseResultMap">
+      SELECT count(*) as js FROM info WHERE YEARWEEK(date_format(date,'%Y-%m-%d'),1) = YEARWEEK(now(),7) and uid = #{uid,jdbcType=VARCHAR}
+  </select>
+  <select id="listMyAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from info
+    where uid = #{uid,jdbcType=VARCHAR}
+  </select>
+  <select id="listMy" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from info
+    where uid = #{uid,jdbcType=VARCHAR} and state = '正常'
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from info
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from info
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.wzh.model.Info">
+    insert into info (id, uid, tid,
+      date, time, tname, yroom
+      )
+    values (#{id,jdbcType=VARCHAR}, #{uid,jdbcType=VARCHAR}, #{tid,jdbcType=VARCHAR},
+      #{date,jdbcType=DATE}, #{time,jdbcType=TIMESTAMP}, #{tname,jdbcType=VARCHAR}, #{yroom,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wzh.model.Info">
+    insert into info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="tid != null">
+        tid,
+      </if>
+      <if test="date != null">
+        date,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+      <if test="tname != null">
+        tname,
+      </if>
+      <if test="yroom != null">
+        yroom,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="quant != null">
+        quant,
+      </if>
+      <if test="msg != null">
+        msg,
+      </if>
+      <if test="wid != null">
+        wid,
+      </if>
+      <if test="jid != null">
+        jid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="tid != null">
+        #{tid,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null">
+        #{date,jdbcType=DATE},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tname != null">
+        #{tname,jdbcType=VARCHAR},
+      </if>
+      <if test="yroom != null">
+        #{yroom,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="quant != null">
+        #{quant,jdbcType=VARCHAR},
+      </if>
+      <if test="msg != null">
+        #{msg,jdbcType=VARCHAR},
+      </if>
+      <if test="wid != null">
+        #{wid,jdbcType=VARCHAR},
+      </if>
+      <if test="jid != null">
+        #{jid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wzh.model.Info">
+    update info
+    <set>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="tid != null">
+        tid = #{tid,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null">
+        date = #{date,jdbcType=DATE},
+      </if>
+      <if test="time != null">
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tname != null">
+        tname = #{tname,jdbcType=VARCHAR},
+      </if>
+      <if test="yroom != null">
+        yroom = #{yroom,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wzh.model.Info">
+    update info
+    set uid = #{uid,jdbcType=VARCHAR},
+      tid = #{tid,jdbcType=VARCHAR},
+      date = #{date,jdbcType=DATE},
+      time = #{time,jdbcType=TIMESTAMP},
+      tname = #{tname,jdbcType=VARCHAR},
+      yroom = #{yroom,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

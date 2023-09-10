@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <title>用户添加</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" th:href="@{/them4/ys/layui/css/layui.css}" media="all"/>
+    <link rel="stylesheet" th:href="@{/them4/ys/css/font_eolqem241z66flxr.css}" media="all"/>
+</head>
+<body class="childrenBody">
+
+
+<form class="layui-form" lay-filter="formtable">
+    <div class="layui-form-item">
+        <label class="layui-form-label">姓名</label>
+        <div class="layui-input-block text1">
+            <input type="text" name="nickname" class="layui-input"
+                   lay-verify="required" placeholder="请输入">
+            <input type="hidden" name="id" id="id">
+            <input type="hidden" name="type" id="type" value="患者">
+
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">账号</label>
+        <div class="layui-input-block text1">
+            <input type="text" name="username" class="layui-input"
+                   lay-verify="required" placeholder="请输入">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">密码</label>
+        <div class="layui-input-block text1">
+            <input type="text" name="pass" class="layui-input"
+                   lay-verify="required" placeholder="请输入">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">身份证号</label>
+        <div class="layui-input-block text1">
+            <input type="text" name="card" class="layui-input"
+                   lay-verify="required" placeholder="请输入">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">性别</label>
+        <div class="layui-input-block">
+            <input type="radio" name="sex" value="男" title="男" checked="">
+            <input type="radio" name="sex" value="女" title="女">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">电话:</label>
+        <div class="layui-input-block text1">
+            <input type="text" name="tel" class="layui-input"
+                   lay-verify="required" placeholder="请输入">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit="" lay-filter="adddd">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+<script type="text/javascript" th:src="@{/them4/ys/layui/layui.js}"></script>
+<script type="text/javascript">
+    layui
+        .config({
+            base: "js/"
+        })
+        .use(
+            ['form', 'layer', 'jquery', 'layedit', 'laydate', 'upload'],
+            function () {
+                var form = layui.form, layer = layui.layer, laypage = layui.laypage, layedit = layui.layedit,
+                    laydate = layui.laydate, $ = layui.jquery, upload = layui.upload;
+
+                function getUParam(name, id) {
+                    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); // 构造一个含有目标参数的正则表达式对象
+                    var r = decodeURIComponent(
+                        $("#" + id).attr("src").substr(
+                            $("#" + id).attr("src").indexOf("?"))
+                            .substr(1)).match(reg); // 匹配目标参数
+                    if (r != null)
+                        return unescape(r[2]);
+                    return ""; // 返回参数值
+                }
+
+                var dkh= $("#dkh").val();
+                console.log("dkh 的值"+dkh)
+                var id ="[[${id}]]";
+                console.log("id 的值"+id)
+
+                // 监听提交
+                form.on('submit(adddd)', function (data) {
+                    parent.resetSwClose(true);
+                    layer.msg('正在保存。。。', {time: 1000}, function () {
+                    });
+                    var url = "";
+                    if (id != null && id != '')
+                        url =  "/user/update";
+                    else
+                        url =  "/user/msave";
+                    $.getJSON(url, data.field,
+                        function (data) {
+                        console.log("返回的数据："+data.code)
+                            if (data.code == '200') {
+                                parent.layer.closeAll();
+                                parent.reloadList();
+                            } else {
+                                layer.msg('数据保存失败'+data.msg, {
+                                    time: 1000
+                                }, function () {
+                                    alert(data.msg)
+                                });
+                                parent.resetSwClose(false);
+                            }
+                        });
+                    return false;
+                });
+                // 获取信息
+                if (id != null && id != '') {
+                    $.getJSON("/user/get", "id=" + id, function (jsondata) {
+                        if (jsondata.code == '200') {
+                            console.log(JSON.stringify(jsondata.data));
+                            //表单初始赋值
+                            form.val('formtable', JSON.parse(JSON.stringify(jsondata.data)));
+                        } else {
+                            $("#subpost").attr("disabled", "disabled").addClass("layui-btn-disabled");
+                            layer.msg(jsondata.msg, {time: 2000}, function () {
+                                parent.layer.closeAll('iframe');
+                            });
+                        }
+                    });
+                }
+
+
+            })
+</script>
+
+
+
+</body>
+</html>

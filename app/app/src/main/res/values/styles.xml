@@ -1,0 +1,160 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <!--自定义dialog背景全透明无边框theme -->
+    <style name="Dialog_Msg" parent="android:style/Theme.Dialog">
+        <!--背景颜色及和透明程度-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--是否去除标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!--是否去除边框-->
+        <item name="android:windowFrame">@null</item>
+        <!--是否浮现在activity之上-->
+        <item name="android:windowIsFloating">true</item>
+        <!--是否模糊-->
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+    <style name="top_bar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">43dp</item>
+        <item name="android:background">#ffffff</item>
+    </style>
+
+    <style name="top_bar_return">
+        <item name="android:layout_width">25dp</item>
+        <item name="android:layout_height">25dp</item>
+        <item name="android:src">@mipmap/back</item>
+        <item name="android:gravity">center</item>
+        <item name="android:scaleType">fitXY</item>
+        <item name="android:layout_marginLeft">9dp</item>
+        <item name="android:layout_marginTop">9dp</item>
+    </style>
+
+    <style name="top_bar_left">
+        <item name="android:layout_width">66dp</item>
+        <item name="android:layout_height">43dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:textColor">#ffffff</item>
+    </style>
+
+    <style name="top_bar_title">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">43dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginLeft">66dp</item>
+        <item name="android:layout_marginRight">66dp</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#333</item>
+    </style>
+
+    <style name="top_bar_right">
+        <item name="android:layout_width">66dp</item>
+        <item name="android:layout_height">43dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:textColor">#333</item>
+    </style>
+
+    <style name="TabLayoutTextSelected">
+        <item name="android:textSize">17sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#2f54eb</item>
+    </style>
+
+    <style name="TabLayoutTextUnSelected">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#333333</item>
+    </style>
+    <style name="TabLayoutTheme">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+
+
+
+
+    <!--遮罩层-->
+    <style name="DialogTheme" parent="@android:style/Theme.Dialog">
+        <!-- 边框 -->
+        <item name="android:windowFrame">@null</item>
+        <!-- 是否浮现在activity之上 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 半透明 -->
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- 无标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <!-- 背景透明 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- 模糊 -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- 遮罩层 -->
+        <item name="android:backgroundDimAmount">0.5</item>
+    </style>
+
+
+
+    <!--    reminddialog 样式-->
+    <style name="reminddialog" >
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowBackground">@color/transparent</item>
+    </style>
+    <style name="SlideDialog" parent="@android:style/Theme.Holo.Dialog">
+        <!-- 是否有边框 -->
+        <item name="android:windowFrame">@null</item>
+        <!--是否在悬浮Activity之上  -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!--阴影  -->
+        <item name="android:windowIsTranslucent">true</item><!--半透明-->
+        <!--背景透明-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- 还可以加入一些弹出和退出的动画 (lan)-->
+    </style>
+    <style name="MyDialogStyle" parent="@android:style/Theme.Dialog">
+        <!--背景透明-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--没有标题头-->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 是否允许背景灰暗 -->
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+    <declare-styleable name="EasyPickerView">
+        <attr name="epvTextSize" format="dimension"/>
+        <attr name="epvTextColor" format="color"/>
+        <attr name="epvTextPadding" format="dimension"/>
+        <attr name="epvTextMaxScale" format="float"/>
+        <attr name="epvTextMinAlpha" format="float"/>
+        <attr name="epvRecycleMode" format="boolean"/>
+        <attr name="epvMaxShowNum" format="integer"/>
+    </declare-styleable>
+    <declare-styleable name="CountDownProgressBar">
+        <attr name="countDown_circleWidth" format="dimension" />
+        <attr name="countDown_centerTextSize" format="dimension" />
+        <attr name="countDown_betaAngle" format="integer"/>
+        <attr name="countDown_firstColor" format="color" />
+        <attr name="countDown_secondColor" format="color"/>
+        <attr name="countDown_centerTextColor" format="color" />
+        <attr name="countDown_isShowGradient" format="boolean"/>
+    </declare-styleable>
+</resources>

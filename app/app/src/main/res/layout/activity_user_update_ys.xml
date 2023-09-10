@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegistActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <RelativeLayout style="@style/top_bar">
+
+            <ImageView
+                android:id="@+id/back"
+                style="@style/top_bar_return" />
+            <TextView
+                style="@style/top_bar_title"
+                android:text="个人信息" />
+
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:padding="20dp"
+            android:layout_height="wrap_content">
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/ys"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="姓名"
+                            android:layout_marginTop="20dp"
+                            android:textColor="#333333"
+                            android:layout_marginLeft="10dp"
+                            android:textSize="12sp"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:gravity="center_vertical"
+                            android:layout_height="36dp">
+                            <ImageView
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:layout_marginLeft="10dp"
+                                android:scaleType="fitXY"
+                                android:src="@mipmap/mc" />
+                            <EditText
+                                android:id="@+id/nickname"
+                                android:layout_width="match_parent"
+                                android:textCursorDrawable="@drawable/text_cursor_shape"
+                                android:layout_height="45dp"
+                                android:layout_marginRight="10dp"
+                                android:background="@color/transparent"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="20dp"
+                                android:layout_marginLeft="5dp"
+                                android:hint="请输入名称"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="6dp"
+                            android:background="#ccc"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="性别"
+                            android:layout_marginTop="20dp"
+                            android:textColor="#333333"
+                            android:layout_marginLeft="10dp"
+                            android:textSize="12sp"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:gravity="center_vertical"
+                            android:layout_height="36dp">
+                            <ImageView
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:layout_marginLeft="10dp"
+                                android:scaleType="fitXY"
+                                android:src="@mipmap/xb" />
+                            <TextView
+                                android:id="@+id/sex"
+                                android:layout_width="match_parent"
+                                android:textCursorDrawable="@drawable/text_cursor_shape"
+                                android:layout_height="45dp"
+                                android:layout_marginRight="10dp"
+                                android:background="@color/transparent"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="20dp"
+                                android:textColor="#333"
+                                android:layout_marginLeft="5dp"
+                                android:hint="请输入性别"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="6dp"
+                            android:background="#ccc"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="医生介绍"
+                            android:layout_marginTop="20dp"
+                            android:textColor="#333333"
+                            android:layout_marginLeft="10dp"
+                            android:textSize="12sp"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:gravity="center_vertical"
+                            android:layout_height="wrap_content"
+                            android:minHeight="50dp">
+                            <ImageView
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:layout_marginLeft="10dp"
+                                android:scaleType="fitXY"
+                                android:src="@mipmap/js" />
+                            <EditText
+                                android:id="@+id/msg"
+                                android:layout_width="match_parent"
+                                android:textCursorDrawable="@drawable/text_cursor_shape"
+                                android:layout_height="match_parent"
+                                android:layout_marginRight="10dp"
+                                android:background="@color/transparent"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="20dp"
+                                android:layout_marginLeft="5dp"
+                                android:hint="请输入医生介绍"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="6dp"
+                            android:background="#ccc"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="所属诊室"
+                            android:layout_marginTop="20dp"
+                            android:textColor="#333333"
+                            android:layout_marginLeft="10dp"
+                            android:textSize="12sp"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:gravity="center_vertical"
+                            android:layout_height="36dp">
+                            <ImageView
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:layout_marginLeft="10dp"
+                                android:scaleType="fitXY"
+                                android:src="@mipmap/zs" />
+                            <EditText
+                                android:id="@+id/room"
+                                android:layout_width="match_parent"
+                                android:textCursorDrawable="@drawable/text_cursor_shape"
+                                android:layout_height="45dp"
+                                android:layout_marginRight="10dp"
+                                android:background="@color/transparent"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="20dp"
+                                android:layout_marginLeft="5dp"
+                                android:hint="请输入所属诊室"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="6dp"
+                            android:background="#ccc"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="职称"
+                            android:layout_marginTop="20dp"
+                            android:textColor="#333333"
+                            android:layout_marginLeft="10dp"
+                            android:textSize="12sp"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:gravity="center_vertical"
+                            android:layout_height="36dp">
+                            <ImageView
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:layout_marginLeft="10dp"
+                                android:scaleType="fitXY"
+                                android:src="@mipmap/zc" />
+                            <EditText
+                                android:id="@+id/post"
+                                android:layout_width="match_parent"
+                                android:textCursorDrawable="@drawable/text_cursor_shape"
+                                android:layout_height="45dp"
+                                android:layout_marginRight="10dp"
+                                android:background="@color/transparent"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="20dp"
+                                android:layout_marginLeft="5dp"
+                                android:hint="请输职称"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="6dp"
+                            android:background="#ccc"/>
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </ScrollView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp">
+                <Button
+                    android:id="@+id/add"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="45dp"
+                    android:background="@drawable/login_shape"
+                    android:text="保存"
+                    android:textSize="16sp"
+                    android:textColor="#fff"/>
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
